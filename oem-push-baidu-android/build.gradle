@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
+
+    compileOptions {
+        sourceCompatibility sourceCompatibilityVersion
+        targetCompatibility targetCompatibilityVersion
+    }
+
+    defaultConfig {
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode VERSION_CODE
+        versionName "${VERSION_NAME}"
+
+        // library 混淆 -> 随 library 引用，自动添加到 apk 打包混淆
+        consumerProguardFiles 'consumer-proguard-rules.txt'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation "io.github.v7lin:baidu-push-android:${baiduPushAndroidVersion}"
+
+    if (PUBLISH_TO_JFROG || PUBLISH_TO_JCENTER) {
+        api "${GROUP_ID}:oem-push-android:${VERSION_NAME}"
+    } else {
+        api project(':oem-push-android')
+    }
+}
+
+apply from: '../publish.gradle'

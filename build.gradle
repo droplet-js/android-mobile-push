@@ -118,6 +118,8 @@ subprojects {
 
         androidxFragmentVersion = '1.0.0'
 
+        baiduPushAndroidVersion = '1.0.0'
+
         // ---
 
         junitVersion = '4.12'

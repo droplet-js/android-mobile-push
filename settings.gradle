@@ -1,1 +1,1 @@
-include ':app', ':baidu-oem-push-android'
+include ':app', ':oem-push-baidu-android', ':oem-push-android'

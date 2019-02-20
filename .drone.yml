@@ -8,7 +8,8 @@ steps:
   - name: gradle
     path: /root/.gradle
   commands:
-  - ./gradlew :baidu-oem-push-android:clean :baidu-oem-push-android:build
+  - ./gradlew :oem-push-android:clean :oem-push-android:build
+  - ./gradlew :oem-push-baidu-android:clean :oem-push-baidu-android:build
   - ./gradlew :app:clean :app:build
 
 #- name: snapshot
@@ -25,7 +26,8 @@ steps:
 #    VERSION_CODE: ${DRONE_BUILD_NUMBER}
 #    VERSION_NAME: 0.0.1-SNAPSHOT
 #  commands:
-#  - ./gradlew :baidu-oem-push-android:clean :baidu-oem-push-android:install :baidu-oem-push-android:artifactoryPublish
+#  - ./gradlew :oem-push-android:clean :oem-push-android:install :oem-push-android:artifactoryPublish
+#  - ./gradlew :oem-push-baidu-android:clean :oem-push-baidu-android:install :oem-push-baidu-android:artifactoryPublish
 #  when:
 #    event:
 #    - push
@@ -44,7 +46,8 @@ steps:
     VERSION_CODE: ${DRONE_BUILD_NUMBER}
     VERSION_NAME: 0.0.1
   commands:
-  - ./gradlew :baidu-oem-push-android:clean :baidu-oem-push-android:install :baidu-oem-push-android:bintrayUpload
+  - ./gradlew :oem-push-android:clean :oem-push-android:install :oem-push-android:bintrayUpload
+  - ./gradlew :oem-push-baidu-android:clean :oem-push-baidu-android:install :oem-push-baidu-android:bintrayUpload
   when:
     event:
     - tag
