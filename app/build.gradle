@@ -25,15 +25,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions 'default'
+
+    productFlavors {
+        baidu {
+            dimension 'default'
+            matchingFallbacks = ['baidu']
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     if (PUBLISH_TO_JFROG || PUBLISH_TO_JCENTER) {
-        implementation "${GROUP_ID}:oem-push-baidu-android:${VERSION_NAME}"
+        baiduImplementation "${GROUP_ID}:oem-push-baidu-android:${VERSION_NAME}"
     } else {
-        implementation project(':oem-push-baidu-android')
+        implementation project(':oem-push-android')
     }
 
     testImplementation "junit:junit:${junitVersion}"

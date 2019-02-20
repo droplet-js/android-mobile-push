@@ -26,6 +26,10 @@ def buildVersionName() {
     return versionName != null && !versionName.isEmpty() ? versionName : '0.0.1'
 }
 
+def flavorName() {
+    return System.getenv('FLAVOR_NAME')
+}
+
 ext {
     PUBLISH_TO_JFROG = publishToJFrog()
 
@@ -37,6 +41,8 @@ ext {
     GROUP_ID = 'io.github.v7lin'
     VERSION_CODE = buildVersionCode()
     VERSION_NAME = buildVersionName()//'x.y.z'/'x.y.z-SNAPSHOT'
+
+    FLAVOR_NAME = flavorName()
 
     SITE_URL = 'https://github.com/v7lin/android-oem-push'
     GIT_URL = 'https://github.com/v7lin/android-oem-push.git'

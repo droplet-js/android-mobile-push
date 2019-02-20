@@ -13,10 +13,16 @@ if (project.getPlugins().hasPlugin('com.android.library')) {
     task sourcesJar(type: Jar) {
         classifier = 'sources'
         from android.sourceSets.main.java.srcDirs
+        if (FLAVOR_NAME != null && !FLAVOR_NAME.isEmpty()) {
+            from android.sourceSets[FLAVOR_NAME].java.srcDirs
+        }
     }
 
     task javadoc(type: Javadoc) {
         source = android.sourceSets.main.java.srcDirs
+        if (FLAVOR_NAME != null && !FLAVOR_NAME.isEmpty()) {
+            source += android.sourceSets[FLAVOR_NAME].java.srcDirs
+        }
 
         exclude '**/BuildConfig.java'
         exclude '**/R.java'
@@ -61,11 +67,11 @@ install {
             packaging project.getPlugins().hasPlugin('com.android.library') ? "aar" : 'jar'
 
             groupId GROUP_ID
-            artifactId project.name
+            artifactId FLAVOR_NAME != null && !FLAVOR_NAME.isEmpty() ? project.name.replace('-android', "-${FLAVOR_NAME}-android") : project.name
             version = VERSION_NAME
 
-            name project.name
-            description project.name
+            name FLAVOR_NAME != null && !FLAVOR_NAME.isEmpty() ? project.name.replace('-android', "-${FLAVOR_NAME}-android") : project.name
+            description FLAVOR_NAME != null && !FLAVOR_NAME.isEmpty() ? project.name.replace('-android', "-${FLAVOR_NAME}-android") : project.name
             url SITE_URL
 
             licenses {
@@ -115,6 +121,8 @@ artifactory {
         }
 
         defaults {
+            name = FLAVOR_NAME != null && !FLAVOR_NAME.isEmpty() ? project.name.replace('-android', "-${FLAVOR_NAME}-android") : project.name
+
             publishConfigs('archives')
             publishArtifacts = true
         }
@@ -129,8 +137,8 @@ bintray {
 
     pkg {
         repo = 'maven'
-        name = project.name
-        desc = project.name
+        name = FLAVOR_NAME != null && !FLAVOR_NAME.isEmpty() ? project.name.replace('-android', "-${FLAVOR_NAME}-android") : project.name
+        desc = FLAVOR_NAME != null && !FLAVOR_NAME.isEmpty() ? project.name.replace('-android', "-${FLAVOR_NAME}-android") : project.name
         websiteUrl = SITE_URL
         vcsUrl = GIT_URL
         issueTrackerUrl = ISSUE_TRACKER_URL

@@ -9,10 +9,9 @@ steps:
     path: /root/.gradle
   commands:
   - ./gradlew :oem-push-android:clean :oem-push-android:build
-  - ./gradlew :oem-push-baidu-android:clean :oem-push-baidu-android:build
   - ./gradlew :app:clean :app:build
 
-#- name: snapshot
+#- name: snapshot-baidu
 #  image: runmymind/docker-android-sdk
 #  volumes:
 #  - name: gradle
@@ -25,14 +24,14 @@ steps:
 #      from_secret: BINTRAY_API_KEY
 #    VERSION_CODE: ${DRONE_BUILD_NUMBER}
 #    VERSION_NAME: 0.0.1-SNAPSHOT
+#    FLAVOR_NAME: baidu
 #  commands:
 #  - ./gradlew :oem-push-android:clean :oem-push-android:install :oem-push-android:artifactoryPublish
-#  - ./gradlew :oem-push-baidu-android:clean :oem-push-baidu-android:install :oem-push-baidu-android:artifactoryPublish
 #  when:
 #    event:
 #    - push
 
-- name: release
+- name: release-baidu
   image: runmymind/docker-android-sdk
   volumes:
   - name: gradle
@@ -45,9 +44,9 @@ steps:
       from_secret: BINTRAY_API_KEY
     VERSION_CODE: ${DRONE_BUILD_NUMBER}
     VERSION_NAME: 0.0.1
+    FLAVOR_NAME: baidu
   commands:
   - ./gradlew :oem-push-android:clean :oem-push-android:install :oem-push-android:bintrayUpload
-  - ./gradlew :oem-push-baidu-android:clean :oem-push-baidu-android:install :oem-push-baidu-android:bintrayUpload
   when:
     event:
     - tag

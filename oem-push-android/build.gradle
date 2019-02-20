@@ -25,10 +25,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    if (FLAVOR_NAME != null && !FLAVOR_NAME.isEmpty()) {
+        defaultPublishConfig "${FLAVOR_NAME}Release"
+    } else {
+        publishNonDefault true
+    }
+
+    flavorDimensions 'default'
+
+    productFlavors {
+        baidu {
+            dimension 'default'
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    baiduImplementation "io.github.v7lin:baidu-push-android:${baiduPushAndroidVersion}"
 }
 
 apply from: '../publish.gradle'
