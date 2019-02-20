@@ -1,1 +1,1 @@
-include ':app', ':oem-push-android'
+include ':app', ':mobile-push-android'

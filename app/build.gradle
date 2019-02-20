@@ -10,7 +10,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "io.github.v7lin.oem.push"
+        applicationId "io.github.v7lin.mobile.push"
         minSdkVersion androidMinSdkVersion
         targetSdkVersion androidTargetSdkVersion
         versionCode VERSION_CODE
@@ -40,9 +40,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     if (PUBLISH_TO_JFROG || PUBLISH_TO_JCENTER) {
-        baiduImplementation "${GROUP_ID}:oem-push-baidu-android:${VERSION_NAME}"
+        baiduImplementation "${GROUP_ID}:mobile-push-baidu-android:${VERSION_NAME}"
     } else {
-        implementation project(':oem-push-android')
+        implementation project(':mobile-push-android')
     }
 
     testImplementation "junit:junit:${junitVersion}"

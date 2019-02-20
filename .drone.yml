@@ -8,7 +8,7 @@ steps:
   - name: gradle
     path: /root/.gradle
   commands:
-  - ./gradlew :oem-push-android:clean :oem-push-android:build
+  - ./gradlew :mobile-push-android:clean :mobile-push-android:build
   - ./gradlew :app:clean :app:build
 
 #- name: snapshot-baidu
@@ -26,7 +26,7 @@ steps:
 #    VERSION_NAME: 0.0.1-SNAPSHOT
 #    FLAVOR_NAME: baidu
 #  commands:
-#  - ./gradlew :oem-push-android:clean :oem-push-android:install :oem-push-android:artifactoryPublish
+#  - ./gradlew :mobile-push-android:clean :mobile-push-android:install :mobile-push-android:artifactoryPublish
 #  when:
 #    event:
 #    - push
@@ -46,7 +46,7 @@ steps:
     VERSION_NAME: 0.0.1
     FLAVOR_NAME: baidu
   commands:
-  - ./gradlew :oem-push-android:clean :oem-push-android:install :oem-push-android:bintrayUpload
+  - ./gradlew :mobile-push-android:clean :mobile-push-android:install :mobile-push-android:bintrayUpload
   when:
     event:
     - tag

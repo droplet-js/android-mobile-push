@@ -1,4 +1,4 @@
-package oem.push.android;
+package mobile.push.android;
 
 import android.content.Context;
 

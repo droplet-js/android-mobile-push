@@ -1,4 +1,4 @@
-package oem.push.android.baidu;
+package mobile.push.android.baidu;
 
 import android.content.Context;
 

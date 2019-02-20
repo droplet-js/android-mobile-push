@@ -1,4 +1,4 @@
-package io.github.v7lin.oem.push;
+package io.github.v7lin.mobile.push;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("io.github.v7lin.oem.push", appContext.getPackageName());
+        assertEquals("io.github.v7lin.mobile.push", appContext.getPackageName());
     }
 }
