@@ -1,11 +1,11 @@
 package mobile.push.android;
 
+import android.app.Application;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import java.util.List;
 import java.util.Map;
 
 import mobile.push.android.util.JSONUtils;
@@ -18,7 +18,13 @@ public abstract class MobilePush {
         this.context = context.getApplicationContext() != null ? context.getApplicationContext() : context;
     }
 
+    public abstract void init(Application app);
+
     public abstract void startWork(String appKey, String appSecret, boolean enableDebug, Callback callback);
+
+    public abstract void bindAccount(String account);
+
+    public abstract void unbindAccount(String account);
 
     public final Map<String, Object> obtainPushMessage(Intent intent) {
         Bundle extras = intent.getExtras();
@@ -30,9 +36,9 @@ public abstract class MobilePush {
         return null;
     }
 
-    public abstract void bindTags(List<String> tags);
+    public abstract void bindTags(String[] tags);
 
-    public abstract void unbindTags(List<String> tags);
+    public abstract void unbindTags(String[] tags);
 
     public final void cancelAll() {
         NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -41,7 +47,7 @@ public abstract class MobilePush {
 
     public interface Callback {
         public void onSuccess(String response);
-        public void onFailure(int errorCode, String errorMessage);
+        public void onFailure(String errorCode, String errorMessage);
     }
 
     // ---

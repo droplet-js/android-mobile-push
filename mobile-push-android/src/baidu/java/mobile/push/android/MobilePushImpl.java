@@ -1,5 +1,6 @@
 package mobile.push.android;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +10,7 @@ import android.text.TextUtils;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.Map;
 
 import mobile.push.android.baidu.BaiduPushConstants;
@@ -19,6 +20,11 @@ final class MobilePushImpl extends MobilePush {
 
     public MobilePushImpl(Context context) {
         super(context);
+    }
+
+    @Override
+    public void init(Application app) {
+
     }
 
     @Override
@@ -39,7 +45,7 @@ final class MobilePushImpl extends MobilePush {
                         }
                     } else {
                         if (callback != null) {
-                            callback.onFailure(errorCode, "errorCode: " + errorCode);
+                            callback.onFailure(String.valueOf(errorCode), "错误码: " + errorCode);
                         }
                     }
                     MobilePushImpl.this.context.unregisterReceiver(this);
@@ -50,12 +56,22 @@ final class MobilePushImpl extends MobilePush {
     }
 
     @Override
-    public void bindTags(List<String> tags) {
-        PushManager.setTags(context, tags);
+    public void bindAccount(String account) {
+        throw new UnsupportedOperationException("百度移动推送不支持帐号绑定功能");
     }
 
     @Override
-    public void unbindTags(List<String> tags) {
-        PushManager.delTags(context, tags);
+    public void unbindAccount(String account) {
+        throw new UnsupportedOperationException("百度移动推送不支持帐号解绑定功能");
+    }
+
+    @Override
+    public void bindTags(String[] tags) {
+        PushManager.setTags(context, Arrays.asList(tags));
+    }
+
+    @Override
+    public void unbindTags(String[] tags) {
+        PushManager.delTags(context, Arrays.asList(tags));
     }
 }
