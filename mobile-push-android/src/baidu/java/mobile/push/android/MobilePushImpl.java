@@ -57,12 +57,12 @@ final class MobilePushImpl extends MobilePush {
 
     @Override
     public void bindAccount(String account) {
-        throw new UnsupportedOperationException("百度移动推送不支持帐号绑定功能");
+        // 百度移动推送不支持帐号绑定功能
     }
 
     @Override
     public void unbindAccount(String account) {
-        throw new UnsupportedOperationException("百度移动推送不支持帐号解绑定功能");
+        // 百度移动推送不支持帐号解绑定功能
     }
 
     @Override
