@@ -10,6 +10,7 @@ pkg_content = xxx（非Intent.toURI的任意非空字符串）
 ### 阿里云推送
 ````
 # 通知打开APP
+参考官网
 ````
 
 ### snapshot
