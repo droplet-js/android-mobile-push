@@ -24,6 +24,10 @@ final class MobilePushImpl extends MobilePush {
     public void startWork(String appKey, String appSecret, boolean enableDebug, Callback callback) {
         PushServiceFactory.getCloudPushService()
                 .register(context, appKey, appSecret, new AdaptAliyunCallback(callback));
+        if (enableDebug) {
+            PushServiceFactory.getCloudPushService()
+                    .setLogLevel(CloudPushService.LOG_DEBUG);
+        }
     }
 
     @Override
