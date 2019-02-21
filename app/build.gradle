@@ -10,7 +10,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "io.github.v7lin.mobile.push"
+        applicationId "io.github.v7lin.mobilepush"
         minSdkVersion androidMinSdkVersion
         targetSdkVersion androidTargetSdkVersion
         versionCode VERSION_CODE
@@ -29,6 +29,10 @@ android {
     flavorDimensions 'default'
 
     productFlavors {
+        aliyun {
+            dimension 'default'
+            matchingFallbacks = ['aliyun']
+        }
         baidu {
             dimension 'default'
             matchingFallbacks = ['baidu']
@@ -40,6 +44,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     if (PUBLISH_TO_JFROG || PUBLISH_TO_JCENTER) {
+        aliyunImplementation "${GROUP_ID}:mobile-push-aliyun-android:${VERSION_NAME}"
         baiduImplementation "${GROUP_ID}:mobile-push-baidu-android:${VERSION_NAME}"
     } else {
         implementation project(':mobile-push-android')

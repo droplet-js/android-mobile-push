@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public final class JSONUtil {
+public final class JSONUtils {
 
-    private JSONUtil() {
+    private JSONUtils() {
     }
 
     public static Map<String, Object> toMap(String jsonStr) {
@@ -33,7 +33,7 @@ public final class JSONUtil {
         return map;
     }
 
-    public static String toJsonString(Map<String, Object> map) {
+    public static String toJsonString(Map<String, ?> map) {
         JSONObject json = new JSONObject(map);
         return json.toString();
     }

@@ -6,16 +6,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.text.TextUtils;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import mobile.push.android.util.JSONUtil;
+import mobile.push.android.util.JSONUtils;
 
 public abstract class MobilePushMSGReceiver extends BroadcastReceiver {
 
     private static final String ACTION_NOTIFICATION = "android.push.action.NOTIFICATION";
     private static final String ACTION_MESSAGE = "android.push.action.MESSAGE";
-
-    private static final String KEY_EXTRA_MAP = "extraMap";
 
     @Override
     public final void onReceive(Context context, Intent intent) {
@@ -29,8 +28,8 @@ public abstract class MobilePushMSGReceiver extends BroadcastReceiver {
     }
 
     private Map<String, Object> extMap(Intent intent) {
-        String jsonStr = intent.getStringExtra(KEY_EXTRA_MAP);
-        return JSONUtil.toMap(jsonStr);
+        String jsonStr = intent.getStringExtra(MobilePushConstants.KEY_EXTRA_MAP);
+        return JSONUtils.toMap(jsonStr);
     }
 
     public abstract void onMessage(Map<String, Object> map);
@@ -50,18 +49,27 @@ public abstract class MobilePushMSGReceiver extends BroadcastReceiver {
         context.unregisterReceiver(receiver);
     }
 
-    public static void sendNotification(Context context, String jsonStr) {
+    public static void sendMessage(Context context, String message, String content) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(MobilePushConstants.KEY_MESSAGE, message);
+        map.put(MobilePushConstants.KEY_CONTENT, content);
+
         Intent intent = new Intent();
-        intent.setAction(ACTION_NOTIFICATION);
-        intent.putExtra(KEY_EXTRA_MAP, jsonStr);
+        intent.setAction(ACTION_MESSAGE);
+        intent.putExtra(MobilePushConstants.KEY_EXTRA_MAP, JSONUtils.toJsonString(map));
         intent.setPackage(context.getPackageName());
         context.sendBroadcast(intent);
     }
 
-    public static void sendMessage(Context context, String jsonStr) {
+    public static void sendNotification(Context context, String title, String description, String content) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(MobilePushConstants.KEY_TITLE, title);
+        map.put(MobilePushConstants.KEY_DESCRIPTION, description);
+        map.put(MobilePushConstants.KEY_CONTENT, content);
+
         Intent intent = new Intent();
-        intent.setAction(ACTION_MESSAGE);
-        intent.putExtra(KEY_EXTRA_MAP, jsonStr);
+        intent.setAction(ACTION_NOTIFICATION);
+        intent.putExtra(MobilePushConstants.KEY_EXTRA_MAP, JSONUtils.toJsonString(map));
         intent.setPackage(context.getPackageName());
         context.sendBroadcast(intent);
     }

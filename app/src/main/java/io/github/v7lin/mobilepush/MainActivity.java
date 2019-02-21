@@ -1,9 +1,7 @@
-package io.github.v7lin.mobile.push;
+package io.github.v7lin.mobilepush;
 
 import android.app.Activity;
 import android.os.Bundle;
-
-import java.util.Map;
 
 import mobile.push.android.MobilePush;
 
@@ -16,7 +14,7 @@ public class MainActivity extends Activity {
         MobilePush.with(this)
                 .startWork("xxx", "xxx", true, new MobilePush.Callback() {
                     @Override
-                    public void onSuccess(Map<String, Object> resp) {
+                    public void onSuccess(String response) {
 
                     }
 

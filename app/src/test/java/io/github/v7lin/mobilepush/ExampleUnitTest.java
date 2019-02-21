@@ -1,4 +1,4 @@
-package io.github.v7lin.mobile.push;
+package io.github.v7lin.mobilepush;
 
 import org.junit.Test;
 

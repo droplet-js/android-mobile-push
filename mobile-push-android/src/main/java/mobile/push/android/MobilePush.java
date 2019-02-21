@@ -3,9 +3,12 @@ package mobile.push.android;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import java.util.List;
 import java.util.Map;
+
+import mobile.push.android.util.JSONUtils;
 
 public abstract class MobilePush {
 
@@ -17,7 +20,15 @@ public abstract class MobilePush {
 
     public abstract void startWork(String appKey, String appSecret, boolean enableDebug, Callback callback);
 
-    public abstract Map<String, Object> obtainPushMessage(Intent intent);
+    public final Map<String, Object> obtainPushMessage(Intent intent) {
+        Bundle extras = intent.getExtras();
+        if (extras != null && extras.containsKey(MobilePushConstants.KEY_EXTRA_MAP)) {
+            String jsonStr = intent.getStringExtra(MobilePushConstants.KEY_EXTRA_MAP);
+            Map<String, Object> map = JSONUtils.toMap(jsonStr);
+            return map;
+        }
+        return null;
+    }
 
     public abstract void bindTags(List<String> tags);
 
@@ -29,7 +40,7 @@ public abstract class MobilePush {
     }
 
     public interface Callback {
-        public void onSuccess(Map<String, Object> resp);
+        public void onSuccess(String response);
         public void onFailure(int errorCode, String errorMessage);
     }
 

@@ -35,6 +35,9 @@ android {
     flavorDimensions 'default'
 
     productFlavors {
+        aliyun {
+            dimension 'default'
+        }
         baidu {
             dimension 'default'
         }
@@ -43,6 +46,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    aliyunImplementation "io.github.v7lin:aliyun-push-android:${aliyunPushAndroidVersion}"
 
     baiduImplementation "io.github.v7lin:baidu-push-android:${baiduPushAndroidVersion}"
 }
