@@ -10,7 +10,7 @@ import android.text.TextUtils;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import mobile.push.android.baidu.BaiduPushConstants;
@@ -66,12 +66,12 @@ final class MobilePushImpl extends MobilePush {
     }
 
     @Override
-    public void bindTags(String[] tags) {
-        PushManager.setTags(context, Arrays.asList(tags));
+    public void bindTags(List<String> tags) {
+        PushManager.setTags(context, tags);
     }
 
     @Override
-    public void unbindTags(String[] tags) {
-        PushManager.delTags(context, Arrays.asList(tags));
+    public void unbindTags(List<String> tags) {
+        PushManager.delTags(context, tags);
     }
 }

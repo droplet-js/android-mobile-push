@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.util.List;
 import java.util.Map;
 
 import mobile.push.android.util.JSONUtils;
@@ -36,9 +37,9 @@ public abstract class MobilePush {
         return null;
     }
 
-    public abstract void bindTags(String[] tags);
+    public abstract void bindTags(List<String> tags);
 
-    public abstract void unbindTags(String[] tags);
+    public abstract void unbindTags(List<String> tags);
 
     public final void cancelAll() {
         NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

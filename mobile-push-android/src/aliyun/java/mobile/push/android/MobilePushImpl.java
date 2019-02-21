@@ -7,6 +7,8 @@ import com.alibaba.sdk.android.push.CloudPushService;
 import com.alibaba.sdk.android.push.CommonCallback;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 
+import java.util.List;
+
 final class MobilePushImpl extends MobilePush {
 
     public MobilePushImpl(Context context) {
@@ -37,15 +39,24 @@ final class MobilePushImpl extends MobilePush {
     }
 
     @Override
-    public void bindTags(String[] tags) {
+    public void bindTags(List<String> tags) {
         PushServiceFactory.getCloudPushService()
-                .bindTag(CloudPushService.DEVICE_TARGET, tags, null, new AdaptAliyunCallback(null));
+                .bindTag(CloudPushService.DEVICE_TARGET, toArray(tags), null, new AdaptAliyunCallback(null));
     }
 
     @Override
-    public void unbindTags(String[] tags) {
+    public void unbindTags(List<String> tags) {
         PushServiceFactory.getCloudPushService()
-                .unbindTag(CloudPushService.DEVICE_TARGET, tags, null, new AdaptAliyunCallback(null));
+                .unbindTag(CloudPushService.DEVICE_TARGET, toArray(tags), null, new AdaptAliyunCallback(null));
+    }
+
+    private String[] toArray(List<String> tags) {
+        if (tags != null && !tags.isEmpty()) {
+            String[] newTags = new String[tags.size()];
+            tags.toArray(newTags);
+            return newTags;
+        }
+        return new String[0];
     }
 
     private final class AdaptAliyunCallback implements CommonCallback {
