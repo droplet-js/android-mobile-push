@@ -32,14 +32,14 @@ final class MobilePushImpl extends MobilePush {
                 if (TextUtils.equals(BaiduPushConstants.ACTION_BIND_CHANNEL, intent.getAction())) {
                     String jsonStr = intent.getStringExtra(BaiduPushConstants.KEY_EXTRA_MAP);
                     Map<String, Object> map = JSONUtil.toMap(jsonStr);
-                    Object success = map.get(BaiduPushConstants.BIND_CHANNEL_KEY_RESULT_SUCCESS);
-                    if (success != null && TextUtils.equals(Boolean.TRUE.toString(), success.toString())) {
+                    final int errorCode = Integer.parseInt(map.get(BaiduPushConstants.BIND_CHANNEL_KEY_RESULT_ERRORCODE).toString());
+                    if (errorCode == PushConstants.ERROR_SUCCESS) {
                         if (callback != null) {
                             callback.onSuccess(map);
                         }
                     } else {
                         if (callback != null) {
-                            callback.onFailure(map);
+                            callback.onFailure(errorCode, "errorCode: " + errorCode);
                         }
                     }
                     MobilePushImpl.this.context.unregisterReceiver(this);

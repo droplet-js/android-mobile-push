@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
                     }
 
                     @Override
-                    public void onFailure(Map<String, Object> errorRes) {
+                    public void onFailure(int errorCode, String errorMessage) {
 
                     }
                 });

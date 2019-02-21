@@ -30,7 +30,7 @@ public abstract class MobilePush {
 
     public interface Callback {
         public void onSuccess(Map<String, Object> resp);
-        public void onFailure(Map<String, Object> errorRes);
+        public void onFailure(int errorCode, String errorMessage);
     }
 
     // ---

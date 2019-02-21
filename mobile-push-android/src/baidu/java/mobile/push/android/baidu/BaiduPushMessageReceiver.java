@@ -21,10 +21,12 @@ public final class BaiduPushMessageReceiver extends PushMessageReceiver {
     public void onBind(Context context, int errorCode, String appId, String userId, String channelId, String requestId) {
         super.onBind(context, errorCode, appId, userId, channelId, requestId);
         Map<String, Object> map = new HashMap<>();
-        map.put(BaiduPushConstants.BIND_CHANNEL_KEY_RESULT_SUCCESS, errorCode == PushConstants.ERROR_SUCCESS);
-        map.put(BaiduPushConstants.BIND_CHANNEL_KEY_RESULT_APPID, appId);
-        map.put(BaiduPushConstants.BIND_CHANNEL_KEY_RESULT_USERID, userId);
-        map.put(BaiduPushConstants.BIND_CHANNEL_KEY_RESULT_CHANNELID, channelId);
+        map.put(BaiduPushConstants.BIND_CHANNEL_KEY_RESULT_ERRORCODE, errorCode);
+        if (errorCode == PushConstants.ERROR_SUCCESS) {
+            map.put(BaiduPushConstants.BIND_CHANNEL_KEY_RESULT_APPID, appId);
+            map.put(BaiduPushConstants.BIND_CHANNEL_KEY_RESULT_USERID, userId);
+            map.put(BaiduPushConstants.BIND_CHANNEL_KEY_RESULT_CHANNELID, channelId);
+        }
         Intent intent = new Intent();
         intent.setAction(BaiduPushConstants.ACTION_BIND_CHANNEL);
         intent.putExtra(BaiduPushConstants.KEY_EXTRA_MAP, JSONUtil.toJsonString(map));
