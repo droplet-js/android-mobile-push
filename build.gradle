@@ -123,7 +123,7 @@ subprojects {
 
         // ---
 
-        aliyunPushAndroidVersion = '0.0.1'
+        aliyunPushAndroidVersion = '1.0.0'
 
         baiduPushAndroidVersion = '1.0.0'
 

@@ -11,45 +11,45 @@ steps:
   - ./gradlew :mobile-push-android:clean :mobile-push-android:build
   - ./gradlew :app:clean :app:build
 
-#- name: snapshot-aliyun
-#  image: runmymind/docker-android-sdk
-#  volumes:
-#  - name: gradle
-#    path: /root/.gradle
-#  environment:
-#    PUBLISH_TO_JFROG: true
-#    BINTRAY_USER:
-#      from_secret: BINTRAY_USER
-#    BINTRAY_API_KEY:
-#      from_secret: BINTRAY_API_KEY
-#    VERSION_CODE: ${DRONE_BUILD_NUMBER}
-#    VERSION_NAME: 0.0.1-SNAPSHOT
-#    FLAVOR_NAME: aliyun
-#  commands:
-#  - ./gradlew :mobile-push-android:clean :mobile-push-android:install :mobile-push-android:artifactoryPublish
-#  when:
-#    event:
-#    - push
-#
-#- name: snapshot-baidu
-#  image: runmymind/docker-android-sdk
-#  volumes:
-#  - name: gradle
-#    path: /root/.gradle
-#  environment:
-#    PUBLISH_TO_JFROG: true
-#    BINTRAY_USER:
-#      from_secret: BINTRAY_USER
-#    BINTRAY_API_KEY:
-#      from_secret: BINTRAY_API_KEY
-#    VERSION_CODE: ${DRONE_BUILD_NUMBER}
-#    VERSION_NAME: 0.0.1-SNAPSHOT
-#    FLAVOR_NAME: baidu
-#  commands:
-#  - ./gradlew :mobile-push-android:clean :mobile-push-android:install :mobile-push-android:artifactoryPublish
-#  when:
-#    event:
-#    - push
+- name: snapshot-aliyun
+  image: runmymind/docker-android-sdk
+  volumes:
+  - name: gradle
+    path: /root/.gradle
+  environment:
+    PUBLISH_TO_JFROG: true
+    BINTRAY_USER:
+      from_secret: BINTRAY_USER
+    BINTRAY_API_KEY:
+      from_secret: BINTRAY_API_KEY
+    VERSION_CODE: ${DRONE_BUILD_NUMBER}
+    VERSION_NAME: 1.0.0-SNAPSHOT
+    FLAVOR_NAME: aliyun
+  commands:
+  - ./gradlew :mobile-push-android:clean :mobile-push-android:install :mobile-push-android:artifactoryPublish
+  when:
+    event:
+    - push
+
+- name: snapshot-baidu
+  image: runmymind/docker-android-sdk
+  volumes:
+  - name: gradle
+    path: /root/.gradle
+  environment:
+    PUBLISH_TO_JFROG: true
+    BINTRAY_USER:
+      from_secret: BINTRAY_USER
+    BINTRAY_API_KEY:
+      from_secret: BINTRAY_API_KEY
+    VERSION_CODE: ${DRONE_BUILD_NUMBER}
+    VERSION_NAME: 1.0.0-SNAPSHOT
+    FLAVOR_NAME: baidu
+  commands:
+  - ./gradlew :mobile-push-android:clean :mobile-push-android:install :mobile-push-android:artifactoryPublish
+  when:
+    event:
+    - push
 
 - name: release-aliyun
   image: runmymind/docker-android-sdk
@@ -63,7 +63,7 @@ steps:
     BINTRAY_API_KEY:
       from_secret: BINTRAY_API_KEY
     VERSION_CODE: ${DRONE_BUILD_NUMBER}
-    VERSION_NAME: 0.0.1
+    VERSION_NAME: 1.0.0
     FLAVOR_NAME: aliyun
   commands:
   - ./gradlew :mobile-push-android:clean :mobile-push-android:install :mobile-push-android:bintrayUpload
@@ -83,7 +83,7 @@ steps:
     BINTRAY_API_KEY:
       from_secret: BINTRAY_API_KEY
     VERSION_CODE: ${DRONE_BUILD_NUMBER}
-    VERSION_NAME: 0.0.1
+    VERSION_NAME: 1.0.0
     FLAVOR_NAME: baidu
   commands:
   - ./gradlew :mobile-push-android:clean :mobile-push-android:install :mobile-push-android:bintrayUpload
