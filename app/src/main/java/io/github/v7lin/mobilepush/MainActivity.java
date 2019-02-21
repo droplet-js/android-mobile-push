@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
                     }
 
                     @Override
-                    public void onFailure(int errorCode, String errorMessage) {
+                    public void onFailure(String errorCode, String errorMessage) {
 
                     }
                 });
