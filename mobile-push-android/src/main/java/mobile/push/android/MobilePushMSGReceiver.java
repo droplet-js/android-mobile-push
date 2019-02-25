@@ -38,16 +38,14 @@ public abstract class MobilePushMSGReceiver extends BroadcastReceiver {
 
     // ---
 
-    public static <MR extends MobilePushMSGReceiver> void registerReceiver(Context context,
-                                                                           MR receiver) {
+    public static <MR extends MobilePushMSGReceiver> void registerReceiver(Context context, MR receiver) {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_NOTIFICATION);
         intentFilter.addAction(ACTION_MESSAGE);
         context.registerReceiver(receiver, intentFilter);
     }
 
-    public static <MR extends MobilePushMSGReceiver> void unregisterReceiver(Context context,
-                                                                             MR receiver) {
+    public static <MR extends MobilePushMSGReceiver> void unregisterReceiver(Context context, MR receiver) {
         context.unregisterReceiver(receiver);
     }
 
@@ -63,8 +61,7 @@ public abstract class MobilePushMSGReceiver extends BroadcastReceiver {
         context.sendBroadcast(intent);
     }
 
-    public static void sendNotification(Context context, String title, String description,
-                                        String content) {
+    public static void sendNotification(Context context, String title, String description, String content) {
         Map<String, Object> map = new HashMap<>();
         map.put(MobilePushConstants.KEY_TITLE, title);
         map.put(MobilePushConstants.KEY_DESCRIPTION, description);

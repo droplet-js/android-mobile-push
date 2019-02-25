@@ -16,14 +16,12 @@ public abstract class MobilePush {
     protected final Context context;
 
     public MobilePush(Context context) {
-        this.context = context.getApplicationContext() != null
-                ? context.getApplicationContext() : context;
+        this.context = context.getApplicationContext() != null ? context.getApplicationContext() : context;
     }
 
     public abstract void init(Application app);
 
-    public abstract void startWork(String appKey, String appSecret, boolean enableDebug,
-                                   Callback callback);
+    public abstract void startWork(String appKey, String appSecret, boolean enableDebug, Callback callback);
 
     public abstract void bindAccount(String account);
 
@@ -44,8 +42,7 @@ public abstract class MobilePush {
     public abstract void unbindTags(List<String> tags);
 
     public final void cancelAll() {
-        NotificationManager nm =
-                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.cancelAll();
     }
 
