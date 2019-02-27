@@ -1,8 +1,8 @@
 # android-mobile-push
 
 [![Build Status](https://cloud.drone.io/api/badges/v7lin/android-mobile-push/status.svg)](https://cloud.drone.io/v7lin/android-mobile-push)
-[ ![Download](https://api.bintray.com/packages/v7lin/maven/mobile-push-aliyun-android/images/download.svg) ](https://bintray.com/v7lin/maven/mobile-push-aliyun-android/_latestVersion)
-[ ![Download](https://api.bintray.com/packages/v7lin/maven/mobile-push-baidu-android/images/download.svg) ](https://bintray.com/v7lin/maven/mobile-push-baidu-android/_latestVersion)
+[![GitHub tag](https://img.shields.io/github/tag/v7lin/android-mobile-push.svg)](https://github.com/v7lin/android-mobile-push/releases)
+[![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 
 ### 百度移动推送
 ````
