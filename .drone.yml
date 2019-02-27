@@ -36,6 +36,8 @@ steps:
   commands:
   - ./gradlew :mobile-push-android:clean :mobile-push-android:install :mobile-push-android:artifactoryPublish
   when:
+    branch:
+    - master
     event:
     - push
 
@@ -56,6 +58,8 @@ steps:
   commands:
   - ./gradlew :mobile-push-android:clean :mobile-push-android:install :mobile-push-android:artifactoryPublish
   when:
+    branch:
+    - master
     event:
     - push
 
