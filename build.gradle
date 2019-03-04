@@ -123,9 +123,9 @@ subprojects {
 
         // ---
 
-        aliyunPushAndroidVersion = '1.0.0'
+        aliyunPushAndroidVersion = '3.0.11'
 
-        baiduPushAndroidVersion = '1.0.0'
+        baiduPushAndroidVersion = '5.9.0.59'
 
         // ---
 
