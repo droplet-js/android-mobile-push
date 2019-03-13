@@ -53,9 +53,16 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    aliyunImplementation "io.github.v7lin:aliyun-push-android:${aliyunPushAndroidVersion}"
-
-    baiduImplementation "io.github.v7lin:baidu-push-android:${baiduPushAndroidVersion}"
+    if (FLAVOR_NAME != null) {
+        if (FLAVOR_NAME == 'aliyun') {
+            implementation "io.github.v7lin:aliyun-push-android:${aliyunPushAndroidVersion}"
+        } else if (FLAVOR_NAME == 'baidu') {
+            implementation "io.github.v7lin:baidu-push-android:${baiduPushAndroidVersion}"
+        }
+    } else {
+        aliyunImplementation "io.github.v7lin:aliyun-push-android:${aliyunPushAndroidVersion}"
+        baiduImplementation "io.github.v7lin:baidu-push-android:${baiduPushAndroidVersion}"
+    }
 }
 
 apply from: '../publish.gradle'
