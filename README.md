@@ -21,7 +21,7 @@ pkg_content = xxx（非Intent.toURI的任意非空字符串）
 
 ````
 ext {
-    latestVersion = '1.0.0-SNAPSHOT'
+    latestVersion = '1.0.1-SNAPSHOT'
 }
 
 allprojects {

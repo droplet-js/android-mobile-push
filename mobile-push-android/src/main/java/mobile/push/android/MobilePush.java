@@ -19,7 +19,7 @@ public abstract class MobilePush {
         this.context = context.getApplicationContext() != null ? context.getApplicationContext() : context;
     }
 
-    public abstract void init(Application app);
+    public abstract MobilePush init(Application app);
 
     public abstract void startWork(String appKey, String appSecret, boolean enableDebug, Callback callback);
 

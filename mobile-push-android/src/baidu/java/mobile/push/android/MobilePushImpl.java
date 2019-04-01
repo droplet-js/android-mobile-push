@@ -23,8 +23,8 @@ final class MobilePushImpl extends MobilePush {
     }
 
     @Override
-    public void init(Application app) {
-
+    public MobilePush init(Application app) {
+        return this;
     }
 
     @Override
